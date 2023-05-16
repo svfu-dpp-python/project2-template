@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{#
+<div class="menu">
+    {% if 'username' in session %}
+    <a href="{{ url_for('admin.index') }}">Админка</a>
+    <span>{{ session['username'] }}</span>
+    <a href="{{ url_for('logout') }}">Выход</a>
+    {% else %}
+    <a href="{{ url_for('login_page') }}">Вход</a>
+    {% endif %}
+</div>
+#}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Добро пожаловать!</h1>
+            {% for p in phones %}
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">{{ p }}</h3>
+                    <p>{{ p.brand }}</p>
+                    <p>{{ p.color }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
