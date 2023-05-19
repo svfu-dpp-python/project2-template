@@ -12,18 +12,28 @@
     {% endif %}
 </div>
 #}
+{% set brand_pk = request.args.brand %}
 <div class="container">
     <div class="row">
-        <div class="col">
+        <div class="col-3">
+            <form>
+                <select name="brand">
+                    <option value="0"{% if not brand_pk %} selected{% endif %}>
+                        &nbsp;
+                    </option>
+                    {% for b in brands %}
+                    <option value="{{ b.pk }}"{% if b.pk == brand_pk|int %} selected{% endif %}>
+                        {{ b }}
+                    </option>
+                    {% endfor %}
+                </select>
+                <input type="submit" value="Применить">
+            </form>
+        </div>
+        <div class="col-9">
             <h1>Добро пожаловать!</h1>
             {% for p in phones %}
-            <div class="card">
-                <div class="card-body">
-                    <h3 class="card-title">{{ p }}</h3>
-                    <p>{{ p.brand }}</p>
-                    <p>{{ p.color }}</p>
-                </div>
-            </div>
+            <p>{{ p }}</p>
             {% endfor %}
         </div>
     </div>
